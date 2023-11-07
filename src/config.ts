@@ -1,0 +1,1 @@
+export const jobsUrl = 'https://edwardtanguay.vercel.app/share/jobs.json';
