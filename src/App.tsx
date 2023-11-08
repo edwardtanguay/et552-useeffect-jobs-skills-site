@@ -12,6 +12,9 @@ function App() {
 	useEffect(() => {
 		(async () => {
 			const _jobs = (await axios.get(config.jobsUrl)).data;
+			for (const _job of _jobs) {
+				_job.isOpen = false;
+			}
 			setJobs(_jobs);
 		})();
 	}, []);
@@ -41,7 +44,7 @@ function App() {
 							</h2>
 							{jobs.map((job) => {
 								return (
-									<p className="bg-slate-300 p-2 mb-2 w-[20rem] rounded">
+									<p key={job.id} className="bg-slate-300 p-2 mb-2 w-[20rem] rounded">
 										{job.title}
 									</p>
 								);
@@ -61,7 +64,7 @@ function App() {
 							</h2>
 							{skills.map((skill) => {
 								return (
-									<p className="bg-gray-300 p-2 mb-2 w-[20rem] rounded">
+									<p key={skill.id} className="bg-gray-300 p-2 mb-2 w-[20rem] rounded">
 										{skill.name}
 									</p>
 								);
