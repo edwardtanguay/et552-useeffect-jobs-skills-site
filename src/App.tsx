@@ -9,46 +9,70 @@ function App() {
 	const [skills, setSkills] = useState<ISkill[]>([]);
 
 	useEffect(() => {
-		(async () => {
-			const _jobs = (await axios.get(config.jobsUrl)).data;
-			setJobs(_jobs);
-		})();
+		setTimeout(
+			() => {
+				(async () => {
+					const _jobs = (await axios.get(config.jobsUrl)).data;
+					setJobs(_jobs);
+				})();
+			},
+			Math.floor(Math.random() * 3000 + 1000)
+		);
 	}, []);
 
 	useEffect(() => {
-		(async () => {
-			const _skills = (await axios.get(config.skillsUrl)).data;
-			setSkills(_skills);
-		})();
+		setTimeout(
+			() => {
+				(async () => {
+					const _skills = (await axios.get(config.skillsUrl)).data;
+					setSkills(_skills);
+				})();
+			},
+			Math.floor(Math.random() * 3000 + 1000)
+		);
 	}, []);
 
 	return (
 		<>
-			<h1 className="text-3xl mb-3 text-slate-800 bg-slate-600 text-slate-200 p-4">Jobs/Skills Site</h1>
+			<h1 className="text-3xl mb-3 text-slate-800 bg-slate-600 text-slate-200 p-4">
+				Jobs/Skills Site
+			</h1>
 			<main className="flex justify-around min-w-fit">
 				<section className="mx-6">
-					<h2 className="text-xl mb-3">
-						There are {jobs.length} jobs.
-					</h2>
-					{jobs.map((job) => {
-						return (
-							<p className="bg-slate-300 p-2 mb-2 w-[20rem] rounded">
-								{job.title}
-							</p>
-						);
-					})}
+					{jobs.length === 0 ? (
+						<h2 className="text-xl mb-3 w-[20rem] text-center">Loading...</h2>
+					) : (
+						<>
+							<h2 className="text-xl mb-3">
+								There are {jobs.length} jobs.
+							</h2>
+							{jobs.map((job) => {
+								return (
+									<p className="bg-slate-300 p-2 mb-2 w-[20rem] rounded">
+										{job.title}
+									</p>
+								);
+							})}
+						</>
+					)}
 				</section>
 				<section className="mx-6">
-					<h2 className="text-xl mb-3">
-						There are {skills.length} skills.
-					</h2>
-					{skills.map((skill) => {
-						return (
-							<p className="bg-gray-300 p-2 mb-2 w-[20rem] rounded">
-								{skill.name}
-							</p>
-						);
-					})}
+					{skills.length === 0 ? (
+						<h2 className="text-xl mb-3 w-[20rem] text-center">Loading...</h2>
+					) : (
+						<>
+							<h2 className="text-xl mb-3">
+								There are {skills.length} skills.
+							</h2>
+							{skills.map((skill) => {
+								return (
+									<p className="bg-gray-300 p-2 mb-2 w-[20rem] rounded">
+										{skill.name}
+									</p>
+								);
+							})}
+						</>
+					)}
 				</section>
 			</main>
 		</>
