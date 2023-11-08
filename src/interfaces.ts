@@ -6,6 +6,7 @@ export interface IJob {
 	description: string;
 	skillList: string;
 	publicationDate: string;
+	isOpen: boolean;
 }
 
 export interface ISkill {
@@ -14,4 +15,5 @@ export interface ISkill {
 	name: string;
 	url: string;
 	description: string;
+	isOpen: boolean;
 }
