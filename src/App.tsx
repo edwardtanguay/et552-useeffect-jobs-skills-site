@@ -3,45 +3,37 @@ import * as config from "./config";
 import { IJob } from "./interfaces";
 import { ISkill } from "./interfaces";
 import axios from "axios";
-import { FaSpinner } from 'react-icons/fa';
+import { FaSpinner } from "react-icons/fa";
 
 function App() {
 	const [jobs, setJobs] = useState<IJob[]>([]);
 	const [skills, setSkills] = useState<ISkill[]>([]);
 
 	useEffect(() => {
-		setTimeout(
-			() => {
-				(async () => {
-					const _jobs = (await axios.get(config.jobsUrl)).data;
-					setJobs(_jobs);
-				})();
-			},
-			Math.floor(Math.random() * 3000 + 1000)
-		);
+		(async () => {
+			const _jobs = (await axios.get(config.jobsUrl)).data;
+			setJobs(_jobs);
+		})();
 	}, []);
 
 	useEffect(() => {
-		setTimeout(
-			() => {
-				(async () => {
-					const _skills = (await axios.get(config.skillsUrl)).data;
-					setSkills(_skills);
-				})();
-			},
-			Math.floor(Math.random() * 3000 + 1000)
-		);
+		(async () => {
+			const _skills = (await axios.get(config.skillsUrl)).data;
+			setSkills(_skills);
+		})();
 	}, []);
 
 	return (
 		<>
-			<h1 className="text-3xl mb-3 text-slate-800 bg-slate-600 text-slate-200 p-4">
+			<h1 className="text-3xl mb-3 bg-slate-600 text-slate-200 p-4">
 				Jobs/Skills Site
 			</h1>
 			<main className="flex justify-around min-w-fit">
 				<section className="mx-6">
 					{jobs.length === 0 ? (
-						<h2 className="text-xl mb-3 w-[20rem] flex justify-center"><FaSpinner className="spinner mt-6 text-slate-300"/></h2>
+						<h2 className="text-xl mb-3 w-[20rem] flex justify-center">
+							<FaSpinner className="spinner mt-6 text-slate-300" />
+						</h2>
 					) : (
 						<>
 							<h2 className="text-xl mb-3">
@@ -59,7 +51,9 @@ function App() {
 				</section>
 				<section className="mx-6">
 					{skills.length === 0 ? (
-						<h2 className="text-xl mb-3 w-[20rem] flex justify-center"><FaSpinner className="spinner mt-6 text-gray-300"/></h2>
+						<h2 className="text-xl mb-3 w-[20rem] flex justify-center">
+							<FaSpinner className="spinner mt-6 text-gray-300" />
+						</h2>
 					) : (
 						<>
 							<h2 className="text-xl mb-3">
