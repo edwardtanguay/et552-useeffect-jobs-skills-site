@@ -3,6 +3,7 @@ import * as config from "./config";
 import { IJob } from "./interfaces";
 import { ISkill } from "./interfaces";
 import axios from "axios";
+import { FaSpinner } from 'react-icons/fa';
 
 function App() {
 	const [jobs, setJobs] = useState<IJob[]>([]);
@@ -40,7 +41,7 @@ function App() {
 			<main className="flex justify-around min-w-fit">
 				<section className="mx-6">
 					{jobs.length === 0 ? (
-						<h2 className="text-xl mb-3 w-[20rem] text-center">Loading...</h2>
+						<h2 className="text-xl mb-3 w-[20rem] flex justify-center"><FaSpinner className="spinner mt-6 text-slate-300"/></h2>
 					) : (
 						<>
 							<h2 className="text-xl mb-3">
@@ -58,7 +59,7 @@ function App() {
 				</section>
 				<section className="mx-6">
 					{skills.length === 0 ? (
-						<h2 className="text-xl mb-3 w-[20rem] text-center">Loading...</h2>
+						<h2 className="text-xl mb-3 w-[20rem] flex justify-center"><FaSpinner className="spinner mt-6 text-gray-300"/></h2>
 					) : (
 						<>
 							<h2 className="text-xl mb-3">
