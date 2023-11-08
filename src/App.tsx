@@ -41,7 +41,7 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		setNumberOfToggles(numberOfToggles + 1)
+		setNumberOfToggles(n => n + 1)
 	}, [jobs, skills])
 
 	const handleToggleJob = (job: IJob) => {
