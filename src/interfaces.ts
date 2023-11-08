@@ -7,6 +7,7 @@ export interface IJob {
 	skillList: string;
 	publicationDate: string;
 	isOpen: boolean;
+	fullSkills: string[]
 }
 
 export interface ISkill {
