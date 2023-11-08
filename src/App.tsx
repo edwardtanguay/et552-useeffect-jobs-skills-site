@@ -8,6 +8,7 @@ import { FaSpinner } from "react-icons/fa";
 function App() {
 	const [jobs, setJobs] = useState<IJob[]>([]);
 	const [skills, setSkills] = useState<ISkill[]>([]);
+	const [numberOfToggles, setNumberOfToggles] = useState(-3);
 
 	useEffect(() => {
 		(async () => {
@@ -39,6 +40,10 @@ function App() {
 		})();
 	}, []);
 
+	useEffect(() => {
+		setNumberOfToggles(numberOfToggles + 1)
+	}, [jobs, skills])
+
 	const handleToggleJob = (job: IJob) => {
 		job.isOpen = !job.isOpen;
 		const _jobs = structuredClone(jobs);
@@ -53,8 +58,9 @@ function App() {
 
 	return (
 		<>
-			<h1 className="text-3xl mb-3 bg-slate-600 text-slate-200 p-4">
-				Jobs/Skills Site
+			<h1 className="text-3xl mb-3 bg-slate-600 text-slate-200 p-4 flex justify-between">
+				<span>Jobs/Skills Site</span>
+				<span className="text-xl text-yellow-300">toggle actions: {numberOfToggles}</span>
 			</h1>
 			<main className="flex justify-around min-w-fit">
 				<section className="mx-6">
@@ -69,7 +75,7 @@ function App() {
 							</h2>
 							{jobs.map((job) => {
 								return (
-									<p
+									<div
 										key={job.id}
 										onClick={() => handleToggleJob(job)}
 										className="bg-slate-300 cursor-pointer p-2 mb-2 w-[20rem] rounded"
@@ -92,7 +98,7 @@ function App() {
 												</p>
 											</div>
 										)}
-									</p>
+									</div>
 								);
 							})}
 						</>
@@ -110,7 +116,7 @@ function App() {
 							</h2>
 							{skills.map((skill) => {
 								return (
-									<p
+									<div
 										key={skill.id}
 										onClick={() => handleToggleSkill(skill)}
 										className="bg-gray-300 p-2 mb-2 w-[20rem] cursor-pointer rounded"
@@ -129,7 +135,7 @@ function App() {
 												<p>{skill.description}</p>
 											</div>
 										)}
-									</p>
+									</div>
 								);
 							})}
 						</>
